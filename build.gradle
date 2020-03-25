@@ -1,0 +1,50 @@
+apply plugin: 'kotlin'
+apply plugin: 'java'
+apply plugin: 'application'
+
+group 'com.maironpasha'
+version '1.0'
+
+mainClassName = "com.maironpasha.dell.task.MainKt"
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41"
+    }
+}
+
+dependencies {
+    implementation "javax.xml.bind:jaxb-api:2.3.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "com.fireflysource:firefly-kotlin-ext:4.9.5"
+    implementation "org.postgresql:postgresql:42.2.11"
+    implementation "com.zaxxer:HikariCP:3.4.2"
+    implementation "org.slf4j:slf4j-log4j12:1.7.30"
+    testImplementation "junit:junit:4.12"
+}
+
+jar {
+    manifest.attributes("Main-Class": mainClassName)
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
